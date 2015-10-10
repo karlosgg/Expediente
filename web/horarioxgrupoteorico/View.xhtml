@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HorarioxgrupoteoricoViewDlg" widgetVar="HorarioxgrupoteoricoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewHorarioxgrupoteoricoTitle}">
+            <h:form id="HorarioxgrupoteoricoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{horarioxgrupoteoricoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewHorarioxgrupoteoricoLabel_idHorarioXhorario}"/>
+                        <h:outputText value="#{horarioxgrupoteoricoController.selected.idHorarioXhorario}" title="#{bundle.ViewHorarioxgrupoteoricoTitle_idHorarioXhorario}"/>
+                        <h:outputText value="#{bundle.ViewHorarioxgrupoteoricoLabel_idHorario}"/>
+                        <h:outputText value="#{horarioxgrupoteoricoController.selected.idHorario}" title="#{bundle.ViewHorarioxgrupoteoricoTitle_idHorario}"/>
+                        <h:outputText value="#{bundle.ViewHorarioxgrupoteoricoLabel_idGrupoteorico}"/>
+                        <h:outputText value="#{horarioxgrupoteoricoController.selected.idGrupoteorico}" title="#{bundle.ViewHorarioxgrupoteoricoTitle_idGrupoteorico}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="HorarioxgrupoteoricoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

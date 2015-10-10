@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AlumnosxmateriasViewDlg" widgetVar="AlumnosxmateriasViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAlumnosxmateriasTitle}">
+            <h:form id="AlumnosxmateriasViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{alumnosxmateriasController.selected != null}">
+                        <h:outputText value="#{bundle.ViewAlumnosxmateriasLabel_idAlumnosXMaterias}"/>
+                        <h:outputText value="#{alumnosxmateriasController.selected.idAlumnosXMaterias}" title="#{bundle.ViewAlumnosxmateriasTitle_idAlumnosXMaterias}"/>
+                        <h:outputText value="#{bundle.ViewAlumnosxmateriasLabel_idMateria}"/>
+                        <h:outputText value="#{alumnosxmateriasController.selected.idMateria}" title="#{bundle.ViewAlumnosxmateriasTitle_idMateria}"/>
+                        <h:outputText value="#{bundle.ViewAlumnosxmateriasLabel_idAlumno}"/>
+                        <h:outputText value="#{alumnosxmateriasController.selected.idAlumno}" title="#{bundle.ViewAlumnosxmateriasTitle_idAlumno}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="AlumnosxmateriasViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

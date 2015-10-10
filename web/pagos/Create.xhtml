@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PagosCreateDlg" widgetVar="PagosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePagosTitle}">
+            <h:form id="PagosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pagosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePagosLabel_idPago}" for="idPago" />
+                        <p:inputText id="idPago" value="#{pagosController.selected.idPago}" title="#{bundle.CreatePagosTitle_idPago}" required="true" requiredMessage="#{bundle.CreatePagosRequiredMessage_idPago}"/>
+                        <p:outputLabel value="#{bundle.CreatePagosLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{pagosController.selected.cantidad}" title="#{bundle.CreatePagosTitle_cantidad}" />
+                        <p:outputLabel value="#{bundle.CreatePagosLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{pagosController.selected.fecha}" title="#{bundle.EditPagosTitle_fecha}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePagosLabel_periodo}" for="periodo" />
+                        <p:inputText id="periodo" value="#{pagosController.selected.periodo}" title="#{bundle.CreatePagosTitle_periodo}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pagosController.create}" value="#{bundle.Save}" update="display,:PagosListForm:datalist,:growl" oncomplete="handleSubmit(args,'PagosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PagosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

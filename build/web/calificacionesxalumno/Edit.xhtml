@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CalificacionesxalumnoEditDlg" widgetVar="CalificacionesxalumnoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCalificacionesxalumnoTitle}">
+            <h:form id="CalificacionesxalumnoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{calificacionesxalumnoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCalificacionesxalumnoLabel_idCalificacionesXalumno}" for="idCalificacionesXalumno" />
+                        <p:inputText id="idCalificacionesXalumno" value="#{calificacionesxalumnoController.selected.idCalificacionesXalumno}" title="#{bundle.EditCalificacionesxalumnoTitle_idCalificacionesXalumno}" required="true" requiredMessage="#{bundle.EditCalificacionesxalumnoRequiredMessage_idCalificacionesXalumno}"/>
+                        <p:outputLabel value="#{bundle.EditCalificacionesxalumnoLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{calificacionesxalumnoController.selected.estado}" title="#{bundle.EditCalificacionesxalumnoTitle_estado}" />
+                        <p:outputLabel value="#{bundle.EditCalificacionesxalumnoLabel_idCalificacion}" for="idCalificacion" />
+                        <p:selectOneMenu id="idCalificacion" value="#{calificacionesxalumnoController.selected.idCalificacion}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{calificacionesController.itemsAvailableSelectOne}"
+                                           var="idCalificacionItem"
+                                           itemValue="#{idCalificacionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditCalificacionesxalumnoLabel_idAlumno}" for="idAlumno" />
+                        <p:selectOneMenu id="idAlumno" value="#{calificacionesxalumnoController.selected.idAlumno}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{alumnosController.itemsAvailableSelectOne}"
+                                           var="idAlumnoItem"
+                                           itemValue="#{idAlumnoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{calificacionesxalumnoController.update}" value="#{bundle.Save}" update="display,:CalificacionesxalumnoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CalificacionesxalumnoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CalificacionesxalumnoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DocentesViewDlg" widgetVar="DocentesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDocentesTitle}">
+            <h:form id="DocentesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{docentesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDocentesLabel_idDocentes}"/>
+                        <h:outputText value="#{docentesController.selected.idDocentes}" title="#{bundle.ViewDocentesTitle_idDocentes}"/>
+                        <h:outputText value="#{bundle.ViewDocentesLabel_nombres}"/>
+                        <h:outputText value="#{docentesController.selected.nombres}" title="#{bundle.ViewDocentesTitle_nombres}"/>
+                        <h:outputText value="#{bundle.ViewDocentesLabel_apellidos}"/>
+                        <h:outputText value="#{docentesController.selected.apellidos}" title="#{bundle.ViewDocentesTitle_apellidos}"/>
+                        <h:outputText value="#{bundle.ViewDocentesLabel_email}"/>
+                        <h:outputText value="#{docentesController.selected.email}" title="#{bundle.ViewDocentesTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewDocentesLabel_direccion}"/>
+                        <h:outputText value="#{docentesController.selected.direccion}" title="#{bundle.ViewDocentesTitle_direccion}"/>
+                        <h:outputText value="#{bundle.ViewDocentesLabel_telefono}"/>
+                        <h:outputText value="#{docentesController.selected.telefono}" title="#{bundle.ViewDocentesTitle_telefono}"/>
+                        <h:outputText value="#{bundle.ViewDocentesLabel_celular}"/>
+                        <h:outputText value="#{docentesController.selected.celular}" title="#{bundle.ViewDocentesTitle_celular}"/>
+                        <h:outputText value="#{bundle.ViewDocentesLabel_titulo}"/>
+                        <h:outputText value="#{docentesController.selected.titulo}" title="#{bundle.ViewDocentesTitle_titulo}"/>
+                        <h:outputText value="#{bundle.ViewDocentesLabel_datos}"/>
+                        <h:outputText value="#{docentesController.selected.datos}" title="#{bundle.ViewDocentesTitle_datos}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DocentesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MateriasCreateDlg" widgetVar="MateriasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMateriasTitle}">
+            <h:form id="MateriasCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{materiasController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMateriasLabel_idMaterias}" for="idMaterias" />
+                        <p:inputText id="idMaterias" value="#{materiasController.selected.idMaterias}" title="#{bundle.CreateMateriasTitle_idMaterias}" required="true" requiredMessage="#{bundle.CreateMateriasRequiredMessage_idMaterias}"/>
+                        <p:outputLabel value="#{bundle.CreateMateriasLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{materiasController.selected.nombre}" title="#{bundle.CreateMateriasTitle_nombre}" required="true" requiredMessage="#{bundle.CreateMateriasRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateMateriasLabel_idCiclo}" for="idCiclo" />
+                        <p:selectOneMenu id="idCiclo" value="#{materiasController.selected.idCiclo}" >
+                            <f:selectItems value="#{cicloController.itemsAvailableSelectOne}"
+                                           var="idCicloItem"
+                                           itemValue="#{idCicloItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{materiasController.create}" value="#{bundle.Save}" update="display,:MateriasListForm:datalist,:growl" oncomplete="handleSubmit(args,'MateriasCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MateriasCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

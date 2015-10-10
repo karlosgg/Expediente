@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CalificacionesxmateriaEditDlg" widgetVar="CalificacionesxmateriaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCalificacionesxmateriaTitle}">
+            <h:form id="CalificacionesxmateriaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{calificacionesxmateriaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCalificacionesxmateriaLabel_idCalificacionesXmateria}" for="idCalificacionesXmateria" />
+                        <p:inputText id="idCalificacionesXmateria" value="#{calificacionesxmateriaController.selected.idCalificacionesXmateria}" title="#{bundle.EditCalificacionesxmateriaTitle_idCalificacionesXmateria}" required="true" requiredMessage="#{bundle.EditCalificacionesxmateriaRequiredMessage_idCalificacionesXmateria}"/>
+                        <p:outputLabel value="#{bundle.EditCalificacionesxmateriaLabel_idMateria}" for="idMateria" />
+                        <p:selectOneMenu id="idMateria" value="#{calificacionesxmateriaController.selected.idMateria}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{materiasController.itemsAvailableSelectOne}"
+                                           var="idMateriaItem"
+                                           itemValue="#{idMateriaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditCalificacionesxmateriaLabel_idCalificacion}" for="idCalificacion" />
+                        <p:selectOneMenu id="idCalificacion" value="#{calificacionesxmateriaController.selected.idCalificacion}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{calificacionesController.itemsAvailableSelectOne}"
+                                           var="idCalificacionItem"
+                                           itemValue="#{idCalificacionItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{calificacionesxmateriaController.update}" value="#{bundle.Save}" update="display,:CalificacionesxmateriaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CalificacionesxmateriaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CalificacionesxmateriaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

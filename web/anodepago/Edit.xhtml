@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AnodepagoEditDlg" widgetVar="AnodepagoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAnodepagoTitle}">
+            <h:form id="AnodepagoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{anodepagoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditAnodepagoLabel_idAnodepago}" for="idAnodepago" />
+                        <p:inputText id="idAnodepago" value="#{anodepagoController.selected.idAnodepago}" title="#{bundle.EditAnodepagoTitle_idAnodepago}" required="true" requiredMessage="#{bundle.EditAnodepagoRequiredMessage_idAnodepago}"/>
+                        <p:outputLabel value="#{bundle.EditAnodepagoLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{anodepagoController.selected.estado}" title="#{bundle.EditAnodepagoTitle_estado}" />
+                        <p:outputLabel value="#{bundle.EditAnodepagoLabel_idPago}" for="idPago" />
+                        <p:selectOneMenu id="idPago" value="#{anodepagoController.selected.idPago}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pagosController.itemsAvailableSelectOne}"
+                                           var="idPagoItem"
+                                           itemValue="#{idPagoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditAnodepagoLabel_idAnoacademico}" for="idAnoacademico" />
+                        <p:selectOneMenu id="idAnoacademico" value="#{anodepagoController.selected.idAnoacademico}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{anoacademicoController.itemsAvailableSelectOne}"
+                                           var="idAnoacademicoItem"
+                                           itemValue="#{idAnoacademicoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{anodepagoController.update}" value="#{bundle.Save}" update="display,:AnodepagoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AnodepagoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AnodepagoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

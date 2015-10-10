@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="GruposteoricosxmateriasEditDlg" widgetVar="GruposteoricosxmateriasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditGruposteoricosxmateriasTitle}">
+            <h:form id="GruposteoricosxmateriasEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{gruposteoricosxmateriasController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditGruposteoricosxmateriasLabel_idGruposteoricosXmaterias}" for="idGruposteoricosXmaterias" />
+                        <p:inputText id="idGruposteoricosXmaterias" value="#{gruposteoricosxmateriasController.selected.idGruposteoricosXmaterias}" title="#{bundle.EditGruposteoricosxmateriasTitle_idGruposteoricosXmaterias}" required="true" requiredMessage="#{bundle.EditGruposteoricosxmateriasRequiredMessage_idGruposteoricosXmaterias}"/>
+                        <p:outputLabel value="#{bundle.EditGruposteoricosxmateriasLabel_idMaterias}" for="idMaterias" />
+                        <p:selectOneMenu id="idMaterias" value="#{gruposteoricosxmateriasController.selected.idMaterias}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{materiasController.itemsAvailableSelectOne}"
+                                           var="idMateriasItem"
+                                           itemValue="#{idMateriasItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditGruposteoricosxmateriasLabel_idGruposteoricos}" for="idGruposteoricos" />
+                        <p:selectOneMenu id="idGruposteoricos" value="#{gruposteoricosxmateriasController.selected.idGruposteoricos}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{gruposteoricosController.itemsAvailableSelectOne}"
+                                           var="idGruposteoricosItem"
+                                           itemValue="#{idGruposteoricosItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{gruposteoricosxmateriasController.update}" value="#{bundle.Save}" update="display,:GruposteoricosxmateriasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'GruposteoricosxmateriasEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="GruposteoricosxmateriasEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

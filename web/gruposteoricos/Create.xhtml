@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="GruposteoricosCreateDlg" widgetVar="GruposteoricosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateGruposteoricosTitle}">
+            <h:form id="GruposteoricosCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{gruposteoricosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateGruposteoricosLabel_idGruposTeoricos}" for="idGruposTeoricos" />
+                        <p:inputText id="idGruposTeoricos" value="#{gruposteoricosController.selected.idGruposTeoricos}" title="#{bundle.CreateGruposteoricosTitle_idGruposTeoricos}" required="true" requiredMessage="#{bundle.CreateGruposteoricosRequiredMessage_idGruposTeoricos}"/>
+                        <p:outputLabel value="#{bundle.CreateGruposteoricosLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{gruposteoricosController.selected.nombre}" title="#{bundle.CreateGruposteoricosTitle_nombre}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{gruposteoricosController.create}" value="#{bundle.Save}" update="display,:GruposteoricosListForm:datalist,:growl" oncomplete="handleSubmit(args,'GruposteoricosCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="GruposteoricosCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

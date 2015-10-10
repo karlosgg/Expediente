@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CicloEditDlg" widgetVar="CicloEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCicloTitle}">
+            <h:form id="CicloEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cicloController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCicloLabel_idCiclo}" for="idCiclo" />
+                        <p:inputText id="idCiclo" value="#{cicloController.selected.idCiclo}" title="#{bundle.EditCicloTitle_idCiclo}" required="true" requiredMessage="#{bundle.EditCicloRequiredMessage_idCiclo}"/>
+                        <p:outputLabel value="#{bundle.EditCicloLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{cicloController.selected.nombre}" title="#{bundle.EditCicloTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.EditCicloLabel_idAnoacademico}" for="idAnoacademico" />
+                        <p:inputText id="idAnoacademico" value="#{cicloController.selected.idAnoacademico}" title="#{bundle.EditCicloTitle_idAnoacademico}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cicloController.update}" value="#{bundle.Save}" update="display,:CicloListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CicloEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CicloEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

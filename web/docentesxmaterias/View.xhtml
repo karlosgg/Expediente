@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DocentesxmateriasViewDlg" widgetVar="DocentesxmateriasViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDocentesxmateriasTitle}">
+            <h:form id="DocentesxmateriasViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{docentesxmateriasController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDocentesxmateriasLabel_idDocentesXmaterias}"/>
+                        <h:outputText value="#{docentesxmateriasController.selected.idDocentesXmaterias}" title="#{bundle.ViewDocentesxmateriasTitle_idDocentesXmaterias}"/>
+                        <h:outputText value="#{bundle.ViewDocentesxmateriasLabel_docentesXmateriascol}"/>
+                        <h:outputText value="#{docentesxmateriasController.selected.docentesXmateriascol}" title="#{bundle.ViewDocentesxmateriasTitle_docentesXmateriascol}"/>
+                        <h:outputText value="#{bundle.ViewDocentesxmateriasLabel_hora}"/>
+                        <h:outputText value="#{docentesxmateriasController.selected.hora}" title="#{bundle.ViewDocentesxmateriasTitle_hora}"/>
+                        <h:outputText value="#{bundle.ViewDocentesxmateriasLabel_dia}"/>
+                        <h:outputText value="#{docentesxmateriasController.selected.dia}" title="#{bundle.ViewDocentesxmateriasTitle_dia}"/>
+                        <h:outputText value="#{bundle.ViewDocentesxmateriasLabel_idMaterias}"/>
+                        <h:outputText value="#{docentesxmateriasController.selected.idMaterias}" title="#{bundle.ViewDocentesxmateriasTitle_idMaterias}"/>
+                        <h:outputText value="#{bundle.ViewDocentesxmateriasLabel_idDocentes}"/>
+                        <h:outputText value="#{docentesxmateriasController.selected.idDocentes}" title="#{bundle.ViewDocentesxmateriasTitle_idDocentes}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DocentesxmateriasViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DocentesEditDlg" widgetVar="DocentesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDocentesTitle}">
+            <h:form id="DocentesEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{docentesController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditDocentesLabel_idDocentes}" for="idDocentes" />
+                        <p:inputText id="idDocentes" value="#{docentesController.selected.idDocentes}" title="#{bundle.EditDocentesTitle_idDocentes}" required="true" requiredMessage="#{bundle.EditDocentesRequiredMessage_idDocentes}"/>
+                        <p:outputLabel value="#{bundle.EditDocentesLabel_nombres}" for="nombres" />
+                        <p:inputText id="nombres" value="#{docentesController.selected.nombres}" title="#{bundle.EditDocentesTitle_nombres}" required="true" requiredMessage="#{bundle.EditDocentesRequiredMessage_nombres}"/>
+                        <p:outputLabel value="#{bundle.EditDocentesLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" value="#{docentesController.selected.apellidos}" title="#{bundle.EditDocentesTitle_apellidos}" required="true" requiredMessage="#{bundle.EditDocentesRequiredMessage_apellidos}"/>
+                        <p:outputLabel value="#{bundle.EditDocentesLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{docentesController.selected.email}" title="#{bundle.EditDocentesTitle_email}" />
+                        <p:outputLabel value="#{bundle.EditDocentesLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{docentesController.selected.direccion}" title="#{bundle.EditDocentesTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.EditDocentesLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{docentesController.selected.telefono}" title="#{bundle.EditDocentesTitle_telefono}" />
+                        <p:outputLabel value="#{bundle.EditDocentesLabel_celular}" for="celular" />
+                        <p:inputText id="celular" value="#{docentesController.selected.celular}" title="#{bundle.EditDocentesTitle_celular}" />
+                        <p:outputLabel value="#{bundle.EditDocentesLabel_titulo}" for="titulo" />
+                        <p:inputText id="titulo" value="#{docentesController.selected.titulo}" title="#{bundle.EditDocentesTitle_titulo}" />
+                        <p:outputLabel value="#{bundle.EditDocentesLabel_datos}" for="datos" />
+                        <p:inputText id="datos" value="#{docentesController.selected.datos}" title="#{bundle.EditDocentesTitle_datos}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{docentesController.update}" value="#{bundle.Save}" update="display,:DocentesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DocentesEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DocentesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

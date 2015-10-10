@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AlumnosxmateriasCreateDlg" widgetVar="AlumnosxmateriasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAlumnosxmateriasTitle}">
+            <h:form id="AlumnosxmateriasCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{alumnosxmateriasController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAlumnosxmateriasLabel_idAlumnosXMaterias}" for="idAlumnosXMaterias" />
+                        <p:inputText id="idAlumnosXMaterias" value="#{alumnosxmateriasController.selected.idAlumnosXMaterias}" title="#{bundle.CreateAlumnosxmateriasTitle_idAlumnosXMaterias}" required="true" requiredMessage="#{bundle.CreateAlumnosxmateriasRequiredMessage_idAlumnosXMaterias}"/>
+                        <p:outputLabel value="#{bundle.CreateAlumnosxmateriasLabel_idMateria}" for="idMateria" />
+                        <p:selectOneMenu id="idMateria" value="#{alumnosxmateriasController.selected.idMateria}" >
+                            <f:selectItems value="#{materiasController.itemsAvailableSelectOne}"
+                                           var="idMateriaItem"
+                                           itemValue="#{idMateriaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateAlumnosxmateriasLabel_idAlumno}" for="idAlumno" />
+                        <p:selectOneMenu id="idAlumno" value="#{alumnosxmateriasController.selected.idAlumno}" >
+                            <f:selectItems value="#{alumnosController.itemsAvailableSelectOne}"
+                                           var="idAlumnoItem"
+                                           itemValue="#{idAlumnoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{alumnosxmateriasController.create}" value="#{bundle.Save}" update="display,:AlumnosxmateriasListForm:datalist,:growl" oncomplete="handleSubmit(args,'AlumnosxmateriasCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AlumnosxmateriasCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
